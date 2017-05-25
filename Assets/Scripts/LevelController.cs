@@ -5,7 +5,6 @@ using UnityEngine;
 public class LevelController : MonoBehaviour {
 
 	public static LevelController current;
-
 	Vector3 startingPosition;
 
 	void Awake() {

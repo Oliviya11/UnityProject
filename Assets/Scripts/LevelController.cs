@@ -17,5 +17,6 @@ public class LevelController : MonoBehaviour {
 
 	public void onRabbitDeath(HeroRabbit rabbit){
 		rabbit.transform.position = startingPosition;
+		rabbit.alive ();
 	}
 }

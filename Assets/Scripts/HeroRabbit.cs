@@ -92,13 +92,12 @@ public class HeroRabbit : MonoBehaviour {
 		    dieAnimation ();
 			if ((curDieTime -= Time.deltaTime) < 0) {
 				LevelController.current.onRabbitDeath (this);
-				aliveAnimation ();
 			}
 
 		}
 	}
 
-	void aliveAnimation() {
+   public void alive() {
 		whiten ();
 		animator.SetBool ("die", false);
 		health = 1;

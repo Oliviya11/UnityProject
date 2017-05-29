@@ -105,6 +105,8 @@ public class HeroRabbit : MonoBehaviour {
 		curDieTime = dieTime;
 		transform.localScale = normalSize;
 		sr.flipX = side;
+		setDecrease (false);
+		setIncrease (false);
 	}
 	void dieAnimation() {
 		animator.SetBool ("die", true);
@@ -206,17 +208,21 @@ public class HeroRabbit : MonoBehaviour {
 	}
 
 	public void decreaseHealth() {
-		if (!shield && health > 0) health--;
+		if (!shield && health > 0) {
+			health--;
+		}
 	}
 
 
 
     void becomeHealthier() {
-		shield = true;
+		
 		if (transform.localScale.x < Vector3.one.x * sizeTimes) {
 			changeSize (sizeTimes);
 
 		} else {
+
+			shield = true;
 			setIncrease (false);
 		}
 
@@ -226,7 +232,7 @@ public class HeroRabbit : MonoBehaviour {
 		
 			if (transform.localScale.x > Vector3.one.x) {
 				changeSize (1 / sizeTimes);
-				red = true;
+			    red = true;
 			    firstBomb = false;
 			} else {
 				setDecrease (false);

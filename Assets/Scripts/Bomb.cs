@@ -17,5 +17,6 @@ public class Bomb : Collectable {
 			rabbit.setDecrease (true);
 			rabbit.decreaseHealth ();
 		}
+
 	}
 }

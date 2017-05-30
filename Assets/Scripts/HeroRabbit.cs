@@ -26,6 +26,9 @@ public class HeroRabbit : MonoBehaviour {
     float redTime = 4f;
 	float curRedTime;
 	Vector3 normalSize;
+	//public Collider2D triggerBody;
+
+	public static HeroRabbit rabbit_copy;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +43,7 @@ public class HeroRabbit : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		heroParent = transform.parent;
 		side = sr.flipX;
+		rabbit_copy = this;
 
 	}
 
@@ -198,7 +202,8 @@ public class HeroRabbit : MonoBehaviour {
 	void changeSize(float times) {
 		 Vector3 scale_speed = Vector3.zero;
 		 Vector3 targetScale = new Vector3 (transform.localScale.x * times, transform.localScale.y * times, transform.localScale.z);
-		 transform.localScale = Vector3.SmoothDamp (transform.localScale, targetScale, ref scale_speed, myTime);
+	//	Debug.Log (Time.deltaTime);
+		transform.localScale = Vector3.SmoothDamp (transform.localScale, targetScale, ref scale_speed, myTime*Time.deltaTime);
 
 	}
 		
@@ -232,8 +237,11 @@ public class HeroRabbit : MonoBehaviour {
 		
 			if (transform.localScale.x > Vector3.one.x) {
 				changeSize (1 / sizeTimes);
-			    red = true;
-			    firstBomb = false;
+			   if (transform.localScale.x < normalSize.x * 2)
+				    decreaseHealth ();
+			   if (health!=0) red = true;
+			  firstBomb = false;
+			   
 			} else {
 				setDecrease (false);
 			}

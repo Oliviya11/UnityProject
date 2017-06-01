@@ -659,11 +659,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4757100540494626, guid: a723b8001ffad3c46a9a03e629308d69, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -24.15
+      value: -22.55
       objectReference: {fileID: 0}
     - target: {fileID: 4757100540494626, guid: a723b8001ffad3c46a9a03e629308d69, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.82
+      value: 7.76
       objectReference: {fileID: 0}
     - target: {fileID: 4757100540494626, guid: a723b8001ffad3c46a9a03e629308d69, type: 2}
       propertyPath: m_LocalPosition.z
@@ -709,6 +709,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1184408803015088, guid: 5e01fa29171b42e4e96e741287fb9fbf,
         type: 2}
+    - target: {fileID: 114395941445124190, guid: a723b8001ffad3c46a9a03e629308d69,
+        type: 2}
+      propertyPath: moveBy
+      value: -6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a723b8001ffad3c46a9a03e629308d69, type: 2}
   m_IsPrefabParent: 0
@@ -2366,11 +2371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfaf3da0fb6c724ca8c8750fb2b9f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBy: -5
+  moveBy: -6
   speed: 1
   head: {fileID: 1123947337}
   body: {fileID: 1123947338}
   radius: 6
+  carrotTime: 2
   prefabCarrot: {fileID: 1184408803015088, guid: 5e01fa29171b42e4e96e741287fb9fbf,
     type: 2}
 --- !u!61 &1123947337
@@ -2539,7 +2545,7 @@ Transform:
   m_PrefabInternal: {fileID: 281538690}
   m_GameObject: {fileID: 1123947335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.15, y: 7.82, z: -19.1}
+  m_LocalPosition: {x: -22.55, y: 7.76, z: -19.1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.1448982}
   m_Children: []
   m_Father: {fileID: 0}

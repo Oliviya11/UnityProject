@@ -292,10 +292,7 @@ public class HeroRabbit : MonoBehaviour {
 			decreaseHealth ();
 		}
 	    decreaseHealth ();
-	
-		yield return new WaitForSeconds (2f);
-		dieEffect ();
-		yield return new WaitForSeconds (1.5f);
+		yield return new WaitForSeconds (dieTime);
 		org.setUsualBehavior ();
 	}
 	public void dieEffect() {

@@ -7,7 +7,7 @@ public class Collectable : MonoBehaviour {
 
 	}
 	protected virtual bool findCondition(HeroRabbit rabbit) {
-		return true;
+		return rabbit.getHealth()!=0;
 	}
 	void OnTriggerEnter2D(Collider2D collider) {
 	   HeroRabbit rabbit = collider.GetComponent<HeroRabbit> ();

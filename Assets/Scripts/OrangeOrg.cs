@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrangeOrg : Org {
 
-	public float radius = 5f;
+	public float radius = 5f, carrotTime = 2f;
 	public GameObject prefabCarrot;
 	bool rabbitIsNoticed = false, carrotDirectionLeft = false;
 	float last_carrot = 0;
@@ -26,7 +26,7 @@ public class OrangeOrg : Org {
 		speed = 1;
 		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
 		if (Mathf.Abs (rabbitPos - transform.position.x) <= radius &&
-			Mathf.Abs(HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 2f) {
+			Mathf.Abs(HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < carrotTime) {
 			speed = 0;
 			findRabbitLocation ();
 			attack ();
@@ -86,8 +86,8 @@ public class OrangeOrg : Org {
 	}
 
 	IEnumerator dieEffectLater() {
-		yield return new WaitForSeconds (3.0f);
-		HeroRabbit.rabbit_copy.dieEffect ();
+		mode = Mode.Stand;
+		yield return new WaitForSeconds (1.0f);
 
 	}
 	protected override bool attackCondition() {

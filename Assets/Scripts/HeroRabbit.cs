@@ -18,14 +18,15 @@ public class HeroRabbit : MonoBehaviour {
 	Transform heroParent = null;
 	public float myTime;
     bool increase = false, decrease = false, 
-	red = false,  shield = false, firstBomb = true, side;
+	red = false,  shield = false, firstBomb = true, 
+	side, fly = false;
 	float sizeTimes = 1.5f;
 	float maxX;
 	float dieTime = 4f;
 	float curDieTime;
     float redTime = 4f;
 	float curRedTime;
-	Vector3 normalSize;
+	Vector3 normalSize, myPos, myPosBeforeJump;
 	//public Collider2D triggerBody;
 
 	public static HeroRabbit rabbit_copy;
@@ -44,7 +45,6 @@ public class HeroRabbit : MonoBehaviour {
 		heroParent = transform.parent;
 		side = sr.flipX;
 		rabbit_copy = this;
-
 	}
 
 	// Update is called once per frame
@@ -76,6 +76,7 @@ public class HeroRabbit : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		myPos = this.transform.position;
 		if (health != 0) {
 			float value = Input.GetAxis ("Horizontal");
 			run (value);
@@ -90,6 +91,8 @@ public class HeroRabbit : MonoBehaviour {
 				becomeIllOrDie ();
 			if (red)
 				reddishRabbit ();
+			if (fly)
+				flyUp ();
 			
 		} else {
 		    dieAnimation ();
@@ -111,6 +114,7 @@ public class HeroRabbit : MonoBehaviour {
 		setIncrease (false);
 		myBody.isKinematic = false;
 		health = 1;
+	//	fly = false;
 	}
 	void dieAnimation() {
 		animator.SetBool ("die", true);
@@ -266,18 +270,22 @@ public class HeroRabbit : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		
-		GreenOrg org = collider.GetComponent<GreenOrg> ();
+		Org org = collider.GetComponent<Org> ();
 		if (health != 0 &&  org!= null && !org.isDead ()) {
 			if (org != null && org.head == collider) {
+				myPosBeforeJump = this.transform.position;
+				fly = true;
 				org.die ();
+
 			} else if (org != null && org.body == collider) {
 				
-				StartCoroutine (waitForRabbitDeath (org));
+					StartCoroutine (waitForRabbitDeath (org));
+				 
 			}
 		}
 	}
 
-	IEnumerator waitForRabbitDeath(GreenOrg org){
+	IEnumerator waitForRabbitDeath(Org org){
 		org.attack ();
 		if (health == 2) {
 			shield = false;
@@ -286,15 +294,29 @@ public class HeroRabbit : MonoBehaviour {
 	    decreaseHealth ();
 	
 		yield return new WaitForSeconds (2f);
+		dieEffect ();
+		yield return new WaitForSeconds (1.5f);
+		org.setUsualBehavior ();
+	}
+	public void dieEffect() {
 		myBody.isKinematic = true;
 		becomeTransparent ();
-		yield return new WaitForSeconds (1f);
-		org.setUsualBehavior ();
 	}
 
 	void becomeTransparent() {
 		Color c = new Color (1.0f, 1.0f, 1.0f, 0.5f);
 		rend.material.SetColor ("_Color", c);
+	}
+
+	void flyUp() {
+		Vector2 vel = myBody.velocity;
+		if (myPos.y - myPosBeforeJump.y > 1f) {
+			fly = false;
+		}
+		else {
+			vel.y = jumpSpeed*1.2f;
+		}
+		myBody.velocity = vel;
 	}
 
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿/*
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +45,7 @@ public class GreenOrg : MonoBehaviour {
 		} else if (mode == Mode.Attack) {
 			animator.SetBool ("run", false);
 			animator.SetBool ("walk", false);
-			animator.SetTrigger ("attack");
+			attackMethod ();
 			speed = 0;
 		}
 		else {
@@ -56,6 +58,10 @@ public class GreenOrg : MonoBehaviour {
 			flipPicture (value);
 		}
 
+	}
+
+	void attackMethod() {
+		animator.SetTrigger ("attack");
 	}
 
 	void walk(float value)
@@ -192,3 +198,49 @@ public class GreenOrg : MonoBehaviour {
 
 
 }
+*/
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GreenOrg : Org {
+	
+	protected override void prepareToAttack() {
+		animator.SetBool ("run", false);
+		animator.SetBool ("walk", false);
+	}
+	protected override void OnRabbitNoticed() {
+		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
+		if ( rabbitPos < pointA.x && rabbitPos > pointB.x &&
+			Mathf.Abs (HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 2f) {
+			speed =2.3f;
+			fromWalkToRunAnimation ();
+			findRabbitLocation ();
+
+		} else {
+			fromRunToWalkAnimation ();
+			speed = 1f;
+		}
+	}
+
+	void findRabbitLocation() {
+
+		if (HeroRabbit.rabbit_copy.transform.position.x < transform.position.x)
+			mode = Mode.GoToB;
+		else
+			mode = Mode.GoToA;
+		oldMode = mode;
+	}
+
+	void fromWalkToRunAnimation() {
+		animator.SetBool ("run", true);
+
+	} 
+	void fromRunToWalkAnimation() {
+		animator.SetBool ("run", false);
+
+	} 
+}
+

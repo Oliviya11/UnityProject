@@ -21,7 +21,7 @@ public class HeroRabbit : MonoBehaviour {
 	red = false,  shield = false, firstBomb = true, side;
 	float sizeTimes = 1.5f;
 	float maxX;
-	float dieTime = 2f;
+	float dieTime = 4f;
 	float curDieTime;
     float redTime = 4f;
 	float curRedTime;
@@ -92,7 +92,6 @@ public class HeroRabbit : MonoBehaviour {
 				reddishRabbit ();
 			
 		} else {
-			
 		    dieAnimation ();
 			if ((curDieTime -= Time.deltaTime) < 0) {
 				LevelController.current.onRabbitDeath (this);
@@ -104,13 +103,14 @@ public class HeroRabbit : MonoBehaviour {
    public void alive() {
 		whiten ();
 		animator.SetBool ("die", false);
-		health = 1;
 		changeInRed ();
 		curDieTime = dieTime;
 		transform.localScale = normalSize;
 		sr.flipX = side;
 		setDecrease (false);
 		setIncrease (false);
+		myBody.isKinematic = false;
+		health = 1;
 	}
 	void dieAnimation() {
 		animator.SetBool ("die", true);
@@ -263,4 +263,38 @@ public class HeroRabbit : MonoBehaviour {
 	public byte getHealth() {
 		return health;
 	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		
+		GreenOrg org = collider.GetComponent<GreenOrg> ();
+		if (health != 0 &&  org!= null && !org.isDead ()) {
+			if (org != null && org.head == collider) {
+				org.die ();
+			} else if (org != null && org.body == collider) {
+				
+				StartCoroutine (waitForRabbitDeath (org));
+			}
+		}
+	}
+
+	IEnumerator waitForRabbitDeath(GreenOrg org){
+		org.attack ();
+		if (health == 2) {
+			shield = false;
+			decreaseHealth ();
+		}
+	    decreaseHealth ();
+	
+		yield return new WaitForSeconds (2f);
+		myBody.isKinematic = true;
+		becomeTransparent ();
+		yield return new WaitForSeconds (1f);
+		org.setUsualBehavior ();
+	}
+
+	void becomeTransparent() {
+		Color c = new Color (1.0f, 1.0f, 1.0f, 0.5f);
+		rend.material.SetColor ("_Color", c);
+	}
+
 }

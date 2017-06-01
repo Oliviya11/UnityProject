@@ -9,13 +9,17 @@ public class GreenOrg : MonoBehaviour {
 	public float speed = 1;
 	SpriteRenderer sr = null;
 	Animator animator = null;
-	Mode mode;
+	Mode mode, oldMode;
+	public Collider2D head, body;
+	Renderer rend = null;
 
 	public enum Mode {
 		GoToA,
 		GoToB,
 		Attack,
-		Stand
+		Stand,
+		Die,
+		Flip
 		//...
 	}
 	// Use this for initialization
@@ -27,17 +31,30 @@ public class GreenOrg : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		mode = Mode.GoToB;
 		animator = GetComponent<Animator> ();
+		rend = GetComponent<Renderer> ();
 
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float value = getDirection();
-		//Debug.Log (value);
-		walk (value);
-		walkAnimation (value);
-		OnRabbitNoticed (value);
-		flipPicture (value);
+		if (mode == Mode.Die) {
+			StartCoroutine (dieAnimation ());
+			
+		} else if (mode == Mode.Attack) {
+			animator.SetBool ("run", false);
+			animator.SetBool ("walk", false);
+			animator.SetTrigger ("attack");
+			speed = 0;
+		}
+		else {
+			float value = getDirection ();
+			walk (value);
+			walkAnimation (value);
+			if (HeroRabbit.rabbit_copy.getHealth()!=0) 
+				OnRabbitNoticed ();
+
+			flipPicture (value);
+		}
 
 	}
 
@@ -64,20 +81,21 @@ public class GreenOrg : MonoBehaviour {
 
 	float getDirection() {
 		Mode oldMode;
+		
 		if(mode == Mode.GoToB) {
 			if (transform.position.x < pointB.x) {
 				oldMode = mode;
 				mode = Mode.Stand;
 				StartCoroutine (standLooking (2.0f, oldMode));
 			}
-		    return -1; //Move left
+			return -1; //Move left
 		} else if(mode == Mode.GoToA) {
 			if (transform.position.x >= pointA.x) {
 				oldMode = mode;
 				mode = Mode.Stand;
 				StartCoroutine (standLooking (2.0f, oldMode));
 			}
-		    return 1; //Move right
+			return 1; //Move right
 	     }
 			return 0; //No movement
      }
@@ -116,28 +134,61 @@ public class GreenOrg : MonoBehaviour {
 		}
 	}
 
-	void OnRabbitNoticed(float value) {
-		Mode oldMode = mode;
-		if (HeroRabbit.rabbit_copy.transform.position.x < pointA.x &&
-		    HeroRabbit.rabbit_copy.transform.position.x > pointB.x &&
-		    Mathf.Abs (HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 3f) {
-			oldMode = mode;
-			speed = 3f;
-			fromWalkToRunAnimation ();
-			findRabbitLocation ();
+	bool OnRabbitNoticed() {
+		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
+		if ( rabbitPos < pointA.x && rabbitPos > pointB.x &&
+		    Mathf.Abs (HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 4f) {
+			speed =2.3f;
+			  fromWalkToRunAnimation ();
+			  findRabbitLocation ();
+
+			return true;
 		} else {
-			mode = oldMode;
 			fromRunToWalkAnimation ();
-			speed = 1;
+		    speed = 1f;
 		}
+		return false;
 	}
 
 	void findRabbitLocation() {
+		
 		if (HeroRabbit.rabbit_copy.transform.position.x < transform.position.x)
 			mode = Mode.GoToB;
 		else
 			mode = Mode.GoToA;
+		oldMode = mode;
 	}
+
+	public void die() {
+		mode = Mode.Die;
+	}
+
+
+	public void attack() {
+		mode = Mode.Attack;
+	}
+	public void setUsualBehavior() {
+		animator.SetBool ("walk", true);
+		mode = oldMode; 
+	}
+
+	public bool isDead() {
+		return mode == Mode.Die;
+	}
+
+	void becomeTransparent() {
+		Color c = new Color (1.0f, 1.0f, 1.0f, 0f);
+		rend.material.SetColor ("_Color", c);
+	}
+
+	IEnumerator dieAnimation() {
+		animator.SetBool ("die", true);
+     	yield return new WaitForSeconds (2f);
+		//Continue excution in few seconds
+		//Other actions...
+		becomeTransparent();
+	}
+
 
 
 }

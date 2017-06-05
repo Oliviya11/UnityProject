@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour {
 
-	public static LevelController current;
+	public static LevelController current = null;
 	int fruitsNumber=0, coinsNumber = 0, lifesNumber=3;
 	int curCrystalColor = -1;
 	Vector3 startingPosition;

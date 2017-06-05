@@ -166,7 +166,6 @@ public class Org : MonoBehaviour {
 		animator.SetBool ("die", true);
 		yield return new WaitForSeconds (1f);
 		Destroy (this.gameObject);
-	//	becomeTransparent();
 	}
 
 

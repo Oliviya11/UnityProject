@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeroRabbit : MonoBehaviour {
 
@@ -269,7 +270,11 @@ public class HeroRabbit : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		
+		interactWithOrgs (collider);
+		interactWithDoors (collider);
+	}
+
+	void interactWithOrgs(Collider2D collider) {
 		Org org = collider.GetComponent<Org> ();
 		if (health != 0 &&  org!= null && !org.isDead ()) {
 			if (org != null && org.head == collider) {
@@ -278,10 +283,24 @@ public class HeroRabbit : MonoBehaviour {
 				org.die ();
 
 			} else if (org != null && org.body == collider) {
-				
-					StartCoroutine (waitForRabbitDeath (org));
-				 
+
+				StartCoroutine (waitForRabbitDeath (org));
+
 			}
+		}
+	}
+
+	void interactWithDoors(Collider2D collider) {
+		Door door = collider.GetComponent<Door> ();
+		if (door != null) {
+			StartCoroutine(openLevel (door.level));
+		}
+	}
+
+	IEnumerator openLevel(int level) {
+		yield return new WaitForSeconds (1f);
+		if (level == 1) {
+			SceneManager.LoadScene ("Level" + level.ToString ());
 		}
 	}
 

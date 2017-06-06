@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour {
-
 	public static LevelController current = null;
 	int fruitsNumber=0, coinsNumber = 0, lifesNumber=3;
 	int curCrystalColor = -1;
@@ -19,8 +19,15 @@ public class LevelController : MonoBehaviour {
 
 	public void onRabbitDeath(HeroRabbit rabbit){
 		decreaseLifeNumber ();
+		if (lifesNumber==0) 
+			StartCoroutine(openLevel ());
 		rabbit.transform.position = startingPosition;
 		rabbit.alive ();
+	}
+
+	IEnumerator openLevel() {
+		yield return new WaitForSeconds (1f);
+			SceneManager.LoadScene ("ChangeLevel");
 	}
 
 	public int getFruitsNumber() {

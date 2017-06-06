@@ -24,6 +24,7 @@ public class Org : MonoBehaviour {
 	}
 	// Use this for initialization
 	protected virtual void Start () {
+		
 		myBody = this.GetComponent<Rigidbody2D> ();
 		pointA = this.transform.position;
 		pointB = pointA;
@@ -92,18 +93,22 @@ public class Org : MonoBehaviour {
 	protected float getDirection() {
 		Mode oldModeIn;
 		if(mode == Mode.GoToB) {
-			if (transform.position.x < pointB.x) {
+			if (transform.position.x < pointB.x && moveBy<0 || transform.position.x > pointB.x && moveBy>0) {
 				oldModeIn = mode;
 				mode = Mode.Stand;
 				StartCoroutine (standLooking (2.0f, oldModeIn));
 			}
+			if (moveBy > 0)
+				return 1;
 			return -1; //Move left
 		} else if(mode == Mode.GoToA) {
-			if (transform.position.x >= pointA.x) {
+			if (transform.position.x >= pointA.x && moveBy<0 || transform.position.x <= pointA.x && moveBy>0) {
 				oldModeIn = mode;
 				mode = Mode.Stand;
 				StartCoroutine (standLooking (2.0f, oldModeIn));
 			}
+			if (moveBy > 0)
+				return -1;
 			return 1; //Move right
 		}
 		return 0; //No movement

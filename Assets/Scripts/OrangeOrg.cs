@@ -26,7 +26,7 @@ public class OrangeOrg : Org {
 		speed = 1;
 		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
 		if (Mathf.Abs (rabbitPos - transform.position.x) <= radius &&
-			Mathf.Abs(HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < carrotTime) {
+			Mathf.Abs(HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 4f) {
 			speed = 0;
 			findRabbitLocation ();
 			attack ();

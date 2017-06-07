@@ -169,7 +169,7 @@ public class Org : MonoBehaviour {
 
 	protected IEnumerator dieAnimation() {
 		animator.SetBool ("die", true);
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (1.5f);
 		Destroy (this.gameObject);
 	}
 

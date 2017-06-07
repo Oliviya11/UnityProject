@@ -13,7 +13,7 @@ public class ButtonsScript : MonoBehaviour {
 	}
 
 	public void onPlay() {
-		SceneManager.LoadScene ("Level1");
+		SceneManager.LoadScene ("ChangeLevel");
 	}
 
 

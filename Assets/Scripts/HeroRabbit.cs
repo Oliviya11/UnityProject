@@ -299,9 +299,7 @@ public class HeroRabbit : MonoBehaviour {
 
 	IEnumerator openLevel(int level) {
 		yield return new WaitForSeconds (1f);
-		if (level == 1) {
 			SceneManager.LoadScene ("Level" + level.ToString ());
-		}
 	}
 
 	IEnumerator waitForRabbitDeath(Org org){

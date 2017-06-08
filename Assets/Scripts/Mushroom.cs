@@ -8,7 +8,7 @@ public class Mushroom : Collectable {
 	protected override void OnRabbitHit(HeroRabbit rabbit) {
 		rabbit.setIncrease(true);
 		rabbit.increaseHealth ();
-		rabbit.playMusicOnMushroom ();
+		if (LevelController.getSound())  rabbit.playMusicOnMushroom ();
 	}
 		
 }

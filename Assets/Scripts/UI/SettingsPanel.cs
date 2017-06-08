@@ -34,7 +34,7 @@ public class SettingsPanel : MonoBehaviour {
 
 
 	void OnSoundBtn() {
-		if (LevelController.current.getSound()) {
+		if (LevelController.getSound()) {
 			OffSound ();
 		} else {
 			OnSound ();
@@ -43,7 +43,7 @@ public class SettingsPanel : MonoBehaviour {
 	}
 
 	void OnMusicBtn() {
-		if (LevelController.current.getMusic ()) {
+		if (LevelController.getMusic ()) {
 			OffMusic ();
 		} 
 
@@ -54,14 +54,14 @@ public class SettingsPanel : MonoBehaviour {
 	}
 
 	void startMusic() {
-		if (LevelController.current.getMusic ())
+		if (LevelController.getMusic ())
 			OnMusic ();
 		else
 			OffMusic ();
 	}
 
 	void startSound() {
-		if (LevelController.current.getSound ())
+		if (LevelController.getSound ())
 			OnSound ();
 		else
 			OffSound ();
@@ -72,24 +72,24 @@ public class SettingsPanel : MonoBehaviour {
 	void OffMusic() {
 		musicBtn.GetComponent<UI2DSprite> ().sprite2D = musicOffImg;
 		musicBtn.GetComponent<UIButton> ().normalSprite2D = musicOffImg;
-		LevelController.current.setMusic (false);
+		LevelController.setMusic (false);
 	}
 
 	void OnMusic() {
 		musicBtn.GetComponent<UI2DSprite> ().sprite2D = musicOnImg;
 		musicBtn.GetComponent<UIButton> ().normalSprite2D = musicOnImg;
-		LevelController.current.setMusic (true);
+		LevelController.setMusic (true);
 	}
 
 	void OffSound() {
 		soundBtn.GetComponent<UI2DSprite> ().sprite2D = soundOffImg;
 		soundBtn.GetComponent<UIButton> ().normalSprite2D = soundOffImg;
-		LevelController.current.setSound (false);
+		LevelController.setSound (false);
 	}
 
 	void OnSound() {
 		soundBtn.GetComponent<UI2DSprite> ().sprite2D = soundOnImg;
 		soundBtn.GetComponent<UIButton> ().normalSprite2D = soundOnImg;
-		LevelController.current.setSound (true);
+		LevelController.setSound (true);
 	}
 }

@@ -27,7 +27,8 @@ public class OrangeOrg : Org {
 		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
 		if (Mathf.Abs (rabbitPos - transform.position.x) <= radius &&
 			Mathf.Abs(HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 4f) {
-			playMusicOnAttack ();
+			if (LevelController.getSound()) 
+			   playMusicOnAttack ();
 			speed = 0;
 			findRabbitLocation ();
 			attack ();

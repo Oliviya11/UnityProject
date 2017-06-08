@@ -81,6 +81,7 @@ public class Org : MonoBehaviour {
 
 	public IEnumerator playMusicOnDeth() {
 		yield return new WaitForSeconds (0.5f);
+		if (LevelController.getSound()) 
 		dieSource.Play ();
 	}
 		

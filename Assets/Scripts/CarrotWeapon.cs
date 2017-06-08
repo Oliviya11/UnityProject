@@ -86,7 +86,7 @@ public class CarrotWeapon : Collectable {
 			rabbit.setDecrease (true);
 			rabbit.decreaseHealth ();
 			rabbit.muteMusicOnRun ();
-			rabbit.playMusicOnBomb ();
+			if (LevelController.getSound())  rabbit.playMusicOnBomb ();
 		} 
 
 	}

@@ -4,43 +4,70 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour {
-	
 	public static LevelController current = null;
-	int fruitsNumber=0, coinsNumber = 0, lifesNumber=3;
+	int fruitsNumber=0, coinsNumber = 0, lifesNumber=3, crystalsCounter=0;
+	static int staticCoinsNumber;
 	int curCrystalColor = -1;
 	Vector3 startingPosition;
-	bool music=true, sound=true;
-
+	static bool music=true, sound=true;
+	LevelInfo info;
+	List<int> fruits = new List<int>();
 	void Awake() {
 		current = this;
 	}
+	void Start() {
+		setInfo ();
 
+	}
+		
+
+	public void setInfo() {
+		string str = PlayerPrefs.GetString ("info", null);
+		info = JsonUtility.FromJson<LevelInfo> (str);
+		if (this.info!=null) {
+			staticCoinsNumber += info.coinsNumber;
+			fruits = info.collectedFruits;
+		}
+	}
+
+	public bool containFruit(int id) {
+		return fruits.Contains (id);
+	}
+
+	public void putInList(int id) {
+		if (!fruits.Contains(id))
+		     fruits.Add (id);
+	}
+
+	public List<int> getFruits() {
+		return fruits;
+	}
 	public void setStartPosition(Vector3 pos){
 		this.startingPosition = pos;
 	}
-	public void setMusic(bool val) {
+	public static void setMusic(bool val) {
 		music = val;
 	}
-	public void setSound(bool val) {
+	public static void setSound(bool val) {
 		sound = val;
 	}
 
-	public bool getMusic() {
+	public static bool getMusic() {
 		return music;
 	}
-	public bool getSound() {
+	public static bool getSound() {
 		return sound;
 	}
 
 	public void onRabbitDeath(HeroRabbit rabbit){
 		decreaseLifeNumber ();
 		if (lifesNumber==0) 
-			StartCoroutine(openLevel ());
+			StartCoroutine(openChangingScene());
 		rabbit.transform.position = startingPosition;
 		rabbit.alive ();
 	}
 
-	IEnumerator openLevel() {
+	IEnumerator openChangingScene() {
 		yield return new WaitForSeconds (1f);
 			SceneManager.LoadScene ("ChangeLevel");
 	}
@@ -70,9 +97,18 @@ public class LevelController : MonoBehaviour {
 
 	public void setCurCrystalColor(int color) {
 		curCrystalColor = color;
+		crystalsCounter++;
 	}
 
 	public int getCurCrystalColor() {
 		return curCrystalColor;
+	}
+
+	public int getCrystalsNumber() {
+		return crystalsCounter;
+	}
+
+	public int getStaticCoinsNumber() {
+		return staticCoinsNumber;
 	}
 }

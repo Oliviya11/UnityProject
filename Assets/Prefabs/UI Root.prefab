@@ -1002,6 +1002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNumber: 3
   label: {fileID: 0}
+  id: 0
 --- !u!114 &114642832858572042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1430,3 +1431,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNumber: 3
   label: {fileID: 0}
+  id: 0

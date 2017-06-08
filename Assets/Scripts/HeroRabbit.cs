@@ -14,6 +14,7 @@ public class HeroRabbit : MonoBehaviour {
 	public AudioClip groundSound = null;
 	public AudioClip attackSound = null;
 
+
 	AudioSource runSource = null;
 	AudioSource coinSource = null;
 	AudioSource crystalSource = null;
@@ -23,6 +24,7 @@ public class HeroRabbit : MonoBehaviour {
 	AudioSource dieSource = null;
 	AudioSource groundSource = null;
 	AudioSource attackSource = null;
+	//AudioSource backgroundSource = null;
 
 	public float speed = 1;
 	Rigidbody2D myBody = null;
@@ -53,34 +55,7 @@ public class HeroRabbit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		runSource = gameObject.AddComponent<AudioSource> ();
-		runSource.clip = runSound;
-
-		coinSource = gameObject.AddComponent<AudioSource> ();
-		coinSource.clip = coinSound;
-
-		crystalSource = gameObject.AddComponent<AudioSource> ();
-		crystalSource.clip = crystalSound;
-
-		fruitSource = gameObject.AddComponent<AudioSource> ();
-		fruitSource.clip = fruitSound;
-
-		bombSource = gameObject.AddComponent<AudioSource> ();
-		bombSource.clip = bombSound;
-
-		mushroomSource = gameObject.AddComponent<AudioSource> ();
-		mushroomSource.clip = mushroomSound;
-
-		dieSource = gameObject.AddComponent<AudioSource> ();
-		dieSource.clip = dieSound;
-
-		groundSource = gameObject.AddComponent<AudioSource> ();
-		groundSource.clip = groundSound;
-
-		attackSource = gameObject.AddComponent<AudioSource> ();
-		attackSource.clip = attackSound;
-
+		initSoundSources ();
 		normalSize = transform.localScale;
 		curRedTime = redTime;
 		curDieTime = dieTime;
@@ -95,23 +70,50 @@ public class HeroRabbit : MonoBehaviour {
 		rabbit_copy = this;
 	}
 
+	void initSoundSources() {
+		runSource = gameObject.AddComponent<AudioSource> ();
+		coinSource = gameObject.AddComponent<AudioSource> ();
+		crystalSource = gameObject.AddComponent<AudioSource> ();
+		fruitSource = gameObject.AddComponent<AudioSource> ();
+		bombSource = gameObject.AddComponent<AudioSource> ();
+		mushroomSource = gameObject.AddComponent<AudioSource> ();
+		dieSource = gameObject.AddComponent<AudioSource> ();
+		groundSource = gameObject.AddComponent<AudioSource> ();
+		attackSource = gameObject.AddComponent<AudioSource> ();
+
+		   runSource.clip = runSound;
+		   coinSource.clip = coinSound;
+		   crystalSource.clip = crystalSound;
+		   fruitSource.clip = fruitSound;
+		   bombSource.clip = bombSound;
+		   mushroomSource.clip = mushroomSound;
+		   dieSource.clip = dieSound;
+		   groundSource.clip = groundSound;
+		   attackSource.clip = attackSound;
+	}
+
 	public void playMusicOnCoin() {
+		if (LevelController.getSound()) 
 		coinSource.Play ();
 	}
 	public void playMusicOnFruit() {
+		if (LevelController.getSound()) 
 		fruitSource.Play ();
 	}
 
 	public void playMusicOnCrystal() {
-		crystalSource.Play ();
+		if (LevelController.getSound()) 
+		  crystalSource.Play ();
 	}
 
 	public void playMusicOnBomb() {
-		bombSource.Play ();
+		if (LevelController.getSound()) 
+	     	bombSource.Play ();
 	}
 
 	public void playMusicOnMushroom() {
-		mushroomSource.Play ();
+		if (LevelController.getSound()) 
+		  mushroomSource.Play ();
 	}
 	/**
 	 * It's bonus. It works AFTER rabbit grew up, NOT in
@@ -164,6 +166,15 @@ public class HeroRabbit : MonoBehaviour {
 			}
 
 		}
+
+		if (!LevelController.getMusic () && this.GetComponent<AudioSource> ().isPlaying) {
+			this.GetComponent<AudioSource> ().Stop();
+		} else if (LevelController.getMusic () && !this.GetComponent<AudioSource> ().isPlaying) {
+			this.GetComponent<AudioSource> ().Play();
+		}
+
+
+			
 	}
 
 	public void playMusicOnDeath() {
@@ -199,7 +210,7 @@ public class HeroRabbit : MonoBehaviour {
 			Vector2 vel = myBody.velocity;
 			vel.x = value * speed;
 			myBody.velocity = vel;
-			if (!runSource.isPlaying)
+			if (!runSource.isPlaying && LevelController.getSound() )
 			     runSource.Play ();
 		} else {
 			muteMusicOnRun ();
@@ -237,6 +248,8 @@ public class HeroRabbit : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Linecast (from, to, layer_id);
 
 		if (hit) {
+			if (LevelController.getSound() && !isGrounded ) 
+				groundSource.Play ();
 			isGrounded = true;
 			SetNewParent (this.transform, hit.transform);
 		} else {
@@ -267,7 +280,7 @@ public class HeroRabbit : MonoBehaviour {
 					this.jumpActive = false;
 					this.jumpTime = 0;
 				}
-			}
+	      }
 
 	}
 
@@ -276,7 +289,6 @@ public class HeroRabbit : MonoBehaviour {
 			animator.SetBool ("jump", false);
 		} else {
 			animator.SetBool ("jump", true);
-			groundSource.Play ();
 		}
 	}
 
@@ -297,7 +309,7 @@ public class HeroRabbit : MonoBehaviour {
 		if (!shield && health > 0) {
 			health--;
 		}
-		if (health==0) playMusicOnDeath ();
+		if (health==0 && LevelController.getSound() ) playMusicOnDeath ();
 	}
 
 
@@ -349,6 +361,7 @@ public class HeroRabbit : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		interactWithOrgs (collider);
 		interactWithDoors (collider);
+		interactWithDoorLevelComplete (collider);
 	}
 
 	void interactWithOrgs(Collider2D collider) {
@@ -357,17 +370,20 @@ public class HeroRabbit : MonoBehaviour {
 			if (org != null && org.head == collider) {
 				myPosBeforeJump = this.transform.position;
 				fly = true;
-				attackSource.Play ();
+				if (LevelController.getSound()) 
+				   attackSource.Play ();
 				org.die ();
 				StartCoroutine (org.playMusicOnDeth ());
 
 			} else if (org != null && org.body == collider) {
-				org.playMusicOnAttack ();
+				if (LevelController.getSound()) 
+				  org.playMusicOnAttack ();
 				StartCoroutine (waitForRabbitDeath (org));
 
 			}
 		}
 	}
+
 
 	void interactWithDoors(Collider2D collider) {
 		Door door = collider.GetComponent<Door> ();
@@ -410,6 +426,21 @@ public class HeroRabbit : MonoBehaviour {
 			vel.y = jumpSpeed*1.2f;
 		}
 		myBody.velocity = vel;
+	}
+
+	void interactWithDoorLevelComplete(Collider2D collider) {
+		DoorLevelComplete door = collider.GetComponent<DoorLevelComplete> ();
+		if (door != null) {
+			door.saveInfo ();
+			StartCoroutine(openChangingScene());
+			LevelController.current.setInfo ();
+		}
+	}
+
+
+	IEnumerator openChangingScene() {
+		yield return new WaitForSeconds (1f);
+		SceneManager.LoadScene ("ChangeLevel");
 	}
 
 }

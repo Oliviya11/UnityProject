@@ -5,12 +5,19 @@ using UnityEngine;
 public class CoinsPanel : MonoBehaviour {
 	public int maxNumber=3;
 	public UILabel label;
+	public int id;
 	int current_number;
 
-	
+	public void setCoins(int coinsNum) {
+		current_number = coinsNum;
+	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		current_number = LevelController.current.getCoinsNumber ();
+		if (id == 0) {
+			current_number = LevelController.current.getStaticCoinsNumber ();
+		} else {
+			current_number = LevelController.current.getCoinsNumber ();
+		}
 		writeText ();
 	}
 

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Org : MonoBehaviour {
+	AudioSource attackSource = null;
+	AudioSource dieSource = null;
+	public AudioClip attackSound = null;
+	public AudioClip dieSound = null;
 	protected Vector3 pointA, pointB;
 	protected Rigidbody2D myBody = null;
 	public float moveBy;
-	public float speed = 1;
+	protected float speed=1;
 	protected SpriteRenderer sr = null;
 	protected Animator animator = null;
 	protected Mode mode, oldMode;
@@ -24,7 +28,14 @@ public class Org : MonoBehaviour {
 	}
 	// Use this for initialization
 	protected virtual void Start () {
-		
+
+
+		attackSource = gameObject.AddComponent<AudioSource> ();
+		attackSource.clip = attackSound;
+
+		dieSource = gameObject.AddComponent<AudioSource> ();
+		dieSource.clip = dieSound;
+
 		myBody = this.GetComponent<Rigidbody2D> ();
 		pointA = this.transform.position;
 		pointB = pointA;
@@ -57,6 +68,20 @@ public class Org : MonoBehaviour {
 			flipPicture (value);
 		}
 
+		if (HeroRabbit.rabbit_copy.getHealth () == 0) {
+			prepareToAttack ();
+		}
+
+	}
+
+	public void playMusicOnAttack() {
+		attackSource.Play ();
+
+	}
+
+	public IEnumerator playMusicOnDeth() {
+		yield return new WaitForSeconds (0.5f);
+		dieSource.Play ();
 	}
 		
 	protected virtual bool attackCondition() {
@@ -97,6 +122,7 @@ public class Org : MonoBehaviour {
 				oldModeIn = mode;
 				mode = Mode.Stand;
 				StartCoroutine (standLooking (2.0f, oldModeIn));
+
 			}
 			if (moveBy > 0)
 				return 1;
@@ -131,6 +157,9 @@ public class Org : MonoBehaviour {
 		toggle(oldMode);
 		animator.SetBool ("walk", true);
 	}
+
+
+
 
 	protected void toggle(Mode oldMode) {
 		if (oldMode == Mode.GoToA) {

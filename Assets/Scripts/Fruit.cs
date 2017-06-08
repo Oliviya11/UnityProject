@@ -6,5 +6,6 @@ public class Fruit : Collectable {
 
 	protected override void OnRabbitHit(HeroRabbit rabbit) {
 		LevelController.current.increaseFruits ();
+		rabbit.playMusicOnFruit ();
 	}
 }

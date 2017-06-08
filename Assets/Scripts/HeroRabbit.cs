@@ -4,6 +4,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HeroRabbit : MonoBehaviour {
+	public AudioClip runSound = null;
+	public AudioClip coinSound = null;
+	public AudioClip crystalSound = null;
+	public AudioClip fruitSound = null;
+	public AudioClip bombSound = null;
+	public AudioClip mushroomSound = null;
+	public AudioClip dieSound = null;
+	public AudioClip groundSound = null;
+	public AudioClip attackSound = null;
+
+	AudioSource runSource = null;
+	AudioSource coinSource = null;
+	AudioSource crystalSource = null;
+	AudioSource fruitSource = null;
+	AudioSource bombSource = null;
+	AudioSource mushroomSource = null;
+	AudioSource dieSource = null;
+	AudioSource groundSource = null;
+	AudioSource attackSource = null;
 
 	public float speed = 1;
 	Rigidbody2D myBody = null;
@@ -17,13 +36,13 @@ public class HeroRabbit : MonoBehaviour {
 	public float jumpSpeed = 2f;
 	byte health;
 	Transform heroParent = null;
-	public float myTime;
+	public float scaleTime;
     bool increase = false, decrease = false, 
 	red = false,  shield = false, firstBomb = true, 
 	side, fly = false;
 	float sizeTimes = 1.5f;
 	float maxX;
-	float dieTime = 4f;
+	public float dieTime;
 	float curDieTime;
     float redTime = 4f;
 	float curRedTime;
@@ -34,6 +53,34 @@ public class HeroRabbit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		runSource = gameObject.AddComponent<AudioSource> ();
+		runSource.clip = runSound;
+
+		coinSource = gameObject.AddComponent<AudioSource> ();
+		coinSource.clip = coinSound;
+
+		crystalSource = gameObject.AddComponent<AudioSource> ();
+		crystalSource.clip = crystalSound;
+
+		fruitSource = gameObject.AddComponent<AudioSource> ();
+		fruitSource.clip = fruitSound;
+
+		bombSource = gameObject.AddComponent<AudioSource> ();
+		bombSource.clip = bombSound;
+
+		mushroomSource = gameObject.AddComponent<AudioSource> ();
+		mushroomSource.clip = mushroomSound;
+
+		dieSource = gameObject.AddComponent<AudioSource> ();
+		dieSource.clip = dieSound;
+
+		groundSource = gameObject.AddComponent<AudioSource> ();
+		groundSource.clip = groundSound;
+
+		attackSource = gameObject.AddComponent<AudioSource> ();
+		attackSource.clip = attackSound;
+
 		normalSize = transform.localScale;
 		curRedTime = redTime;
 		curDieTime = dieTime;
@@ -48,9 +95,23 @@ public class HeroRabbit : MonoBehaviour {
 		rabbit_copy = this;
 	}
 
-	// Update is called once per frame
-	void Update () {
+	public void playMusicOnCoin() {
+		coinSource.Play ();
+	}
+	public void playMusicOnFruit() {
+		fruitSource.Play ();
+	}
 
+	public void playMusicOnCrystal() {
+		crystalSource.Play ();
+	}
+
+	public void playMusicOnBomb() {
+		bombSource.Play ();
+	}
+
+	public void playMusicOnMushroom() {
+		mushroomSource.Play ();
 	}
 	/**
 	 * It's bonus. It works AFTER rabbit grew up, NOT in
@@ -96,12 +157,17 @@ public class HeroRabbit : MonoBehaviour {
 				flyUp ();
 			
 		} else {
+			muteMusicOnRun ();
 		    dieAnimation ();
 			if ((curDieTime -= Time.deltaTime) < 0) {
 				LevelController.current.onRabbitDeath (this);
 			}
 
 		}
+	}
+
+	public void playMusicOnDeath() {
+		dieSource.Play ();
 	}
 
    public void alive() {
@@ -121,7 +187,7 @@ public class HeroRabbit : MonoBehaviour {
 		animator.SetBool ("die", true);
 		animator.SetBool ("run", false);
 		animator.SetBool ("jump", false);
-		myBody.velocity = new Vector2 (0, -speed);
+		//myBody.velocity = new Vector2 (0, -speed);
 	}
 	void SetNewParent(Transform obj, Transform newObject){
 		obj.transform.parent = newObject;
@@ -133,7 +199,15 @@ public class HeroRabbit : MonoBehaviour {
 			Vector2 vel = myBody.velocity;
 			vel.x = value * speed;
 			myBody.velocity = vel;
+			if (!runSource.isPlaying)
+			     runSource.Play ();
+		} else {
+			muteMusicOnRun ();
 		}
+	}
+
+	public void muteMusicOnRun() {
+		runSource.Stop ();
 	}
 
 	void flipPicture(float value) 
@@ -181,6 +255,7 @@ public class HeroRabbit : MonoBehaviour {
 			}
 
 		if (this.jumpActive) {
+			muteMusicOnRun ();
 				if (Input.GetButton ("Jump")) {
 					this.jumpTime += Time.deltaTime;
 					if (this.jumpTime < this.maxJumpTime) {
@@ -201,6 +276,7 @@ public class HeroRabbit : MonoBehaviour {
 			animator.SetBool ("jump", false);
 		} else {
 			animator.SetBool ("jump", true);
+			groundSource.Play ();
 		}
 	}
 
@@ -208,7 +284,7 @@ public class HeroRabbit : MonoBehaviour {
 		 Vector3 scale_speed = Vector3.zero;
 		 Vector3 targetScale = new Vector3 (transform.localScale.x * times, transform.localScale.y * times, transform.localScale.z);
 	//	Debug.Log (Time.deltaTime);
-		transform.localScale = Vector3.SmoothDamp (transform.localScale, targetScale, ref scale_speed, myTime*Time.deltaTime);
+		transform.localScale = Vector3.SmoothDamp (transform.localScale, targetScale, ref scale_speed, scaleTime*Time.deltaTime);
 
 	}
 		
@@ -221,6 +297,7 @@ public class HeroRabbit : MonoBehaviour {
 		if (!shield && health > 0) {
 			health--;
 		}
+		if (health==0) playMusicOnDeath ();
 	}
 
 
@@ -280,10 +357,12 @@ public class HeroRabbit : MonoBehaviour {
 			if (org != null && org.head == collider) {
 				myPosBeforeJump = this.transform.position;
 				fly = true;
+				attackSource.Play ();
 				org.die ();
+				StartCoroutine (org.playMusicOnDeth ());
 
 			} else if (org != null && org.body == collider) {
-
+				org.playMusicOnAttack ();
 				StartCoroutine (waitForRabbitDeath (org));
 
 			}

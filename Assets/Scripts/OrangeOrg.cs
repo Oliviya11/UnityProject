@@ -27,6 +27,7 @@ public class OrangeOrg : Org {
 		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
 		if (Mathf.Abs (rabbitPos - transform.position.x) <= radius &&
 			Mathf.Abs(HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 4f) {
+			playMusicOnAttack ();
 			speed = 0;
 			findRabbitLocation ();
 			attack ();
@@ -39,7 +40,6 @@ public class OrangeOrg : Org {
 	public  override void setUsualBehavior() {
 		if (rabbitIsNoticed) {
 			animator.SetBool ("walk", true);
-		//	speed = 1;
 			mode = oldMode;
 			rabbitIsNoticed = false;
 		}
@@ -61,7 +61,6 @@ public class OrangeOrg : Org {
 	}
 
 	protected override void attackMethod() {
-		
 			animator.SetTrigger ("attack");
 			launchCarrot ();
 	}

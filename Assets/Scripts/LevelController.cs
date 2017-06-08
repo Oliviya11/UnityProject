@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour {
+	
 	public static LevelController current = null;
 	int fruitsNumber=0, coinsNumber = 0, lifesNumber=3;
 	int curCrystalColor = -1;
 	Vector3 startingPosition;
+	bool music=true, sound=true;
 
 	void Awake() {
 		current = this;
@@ -15,6 +17,19 @@ public class LevelController : MonoBehaviour {
 
 	public void setStartPosition(Vector3 pos){
 		this.startingPosition = pos;
+	}
+	public void setMusic(bool val) {
+		music = val;
+	}
+	public void setSound(bool val) {
+		sound = val;
+	}
+
+	public bool getMusic() {
+		return music;
+	}
+	public bool getSound() {
+		return sound;
 	}
 
 	public void onRabbitDeath(HeroRabbit rabbit){

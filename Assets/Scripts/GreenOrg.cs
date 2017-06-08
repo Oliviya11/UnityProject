@@ -39,13 +39,14 @@ public class GreenOrg : Org {
 	} 
 	void fromRunToWalkAnimation() {
 		if (HeroRabbit.rabbit_copy.getHealth () != 0 && !isDead ())
-			animator.SetBool ("run", false); 
+		    animator.SetBool ("run", false); 
 	} 
+	/*
 	IEnumerator dieEffectLater() {
 		mode = Mode.Stand;
 		yield return new WaitForSeconds (1.2f);
 	}
-
+    */
 	protected override void attackMethod() {
 		animator.SetTrigger ("attack");
 	}

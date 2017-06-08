@@ -16,6 +16,9 @@ public class Bomb : Collectable {
 			}
 			rabbit.setDecrease (true);
 			rabbit.decreaseHealth ();
+			rabbit.muteMusicOnRun ();
+			rabbit.playMusicOnBomb ();
+
 		}
 
 	}

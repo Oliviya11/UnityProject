@@ -27,6 +27,9 @@ public class LevelController : MonoBehaviour {
 		if (this.info!=null) {
 			staticCoinsNumber += info.coinsNumber;
 			fruits = info.collectedFruits;
+			music = info.music;
+			Debug.Log ("music from info: "+music);
+			sound = info.sound;
 		}
 	}
 
@@ -61,13 +64,16 @@ public class LevelController : MonoBehaviour {
 
 	public void onRabbitDeath(HeroRabbit rabbit){
 		decreaseLifeNumber ();
-		if (lifesNumber==0) 
-			StartCoroutine(openChangingScene());
+		if (lifesNumber == 0) {
+			StartCoroutine (openChangingScene ());
+			saveInfo (false);
+			setInfo ();
+		}
 		rabbit.transform.position = startingPosition;
 		rabbit.alive ();
 	}
 
-	IEnumerator openChangingScene() {
+	public IEnumerator openChangingScene() {
 		yield return new WaitForSeconds (1f);
 			SceneManager.LoadScene ("ChangeLevel");
 	}
@@ -110,5 +116,37 @@ public class LevelController : MonoBehaviour {
 
 	public int getStaticCoinsNumber() {
 		return staticCoinsNumber;
+	}
+
+	LevelInfo newinfo;
+	public int maxFruitsNumber;
+
+	void modifyLevelInfo(bool val) {
+		newinfo = new LevelInfo ();
+		Fruit.setCounterToZero ();
+		if (val) {
+			newinfo.coinsNumber = LevelController.current.getCoinsNumber ();
+			if (LevelController.current.getCrystalsNumber () == 3) {
+				Debug.Log ("allCrystals");
+				newinfo.hasAllCrystals = true;
+			}
+			if (LevelController.current.getFruitsNumber () == maxFruitsNumber) {
+				newinfo.hasAllFruits = true;
+			}
+			newinfo.collectedFruits = LevelController.current.getFruits ();
+		}
+		newinfo.sound = sound;
+		Debug.Log (music);
+		newinfo.music = music;
+	}
+
+	void save() {
+		string str = JsonUtility.ToJson (newinfo);
+		PlayerPrefs.SetString ("info", str);
+		PlayerPrefs.Save ();
+	}
+	public void saveInfo(bool val) {
+		modifyLevelInfo (val);
+		save ();
 	}
 }

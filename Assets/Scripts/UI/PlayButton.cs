@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonsScript : MonoBehaviour {
-	
+public class PlayButton : MonoBehaviour {
+
 	public MyButton playButton;
 
 	void Start() {
@@ -15,6 +15,5 @@ public class ButtonsScript : MonoBehaviour {
 	public void onPlay() {
 		SceneManager.LoadScene ("ChangeLevel");
 	}
-
 
 }

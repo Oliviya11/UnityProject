@@ -51,18 +51,22 @@ public class SettingsPanel : MonoBehaviour {
 			OnMusic ();
 		}
 
+
 	}
 
 	void startMusic() {
-		if (LevelController.getMusic ())
+		if (LevelController.getMusic ()) {
 			OnMusic ();
+		}
 		else
 			OffMusic ();
 	}
 
 	void startSound() {
-		if (LevelController.getSound ())
+		if (LevelController.getSound ()) {
 			OnSound ();
+
+		}
 		else
 			OffSound ();
 	}
@@ -73,12 +77,14 @@ public class SettingsPanel : MonoBehaviour {
 		musicBtn.GetComponent<UI2DSprite> ().sprite2D = musicOffImg;
 		musicBtn.GetComponent<UIButton> ().normalSprite2D = musicOffImg;
 		LevelController.setMusic (false);
+		if (HeroRabbit.rabbit_copy!=null) HeroRabbit.rabbit_copy.muteOrActiveBackgroundMusic ();
 	}
 
 	void OnMusic() {
 		musicBtn.GetComponent<UI2DSprite> ().sprite2D = musicOnImg;
 		musicBtn.GetComponent<UIButton> ().normalSprite2D = musicOnImg;
 		LevelController.setMusic (true);
+		if (HeroRabbit.rabbit_copy!=null) HeroRabbit.rabbit_copy.muteOrActiveBackgroundMusic ();
 	}
 
 	void OffSound() {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HeroRabbit : MonoBehaviour {
+	public bool canMove;
 	public AudioClip runSound = null;
 	public AudioClip coinSound = null;
 	public AudioClip crystalSound = null;
@@ -49,25 +50,29 @@ public class HeroRabbit : MonoBehaviour {
     float redTime = 4f;
 	float curRedTime;
 	Vector3 normalSize, myPos, myPosBeforeJump;
+	bool soundJump = false;
 	//public Collider2D triggerBody;
 
 	public static HeroRabbit rabbit_copy;
 
 	// Use this for initialization
 	void Start () {
-		initSoundSources ();
-		normalSize = transform.localScale;
-		curRedTime = redTime;
-		curDieTime = dieTime;
-		health = 1;
-		rend = GetComponent<Renderer> ();
-		myBody = this.GetComponent<Rigidbody2D> ();
-		LevelController.current.setStartPosition (transform.position);
-		animator = GetComponent<Animator> ();
-		sr = GetComponent<SpriteRenderer> ();
-		heroParent = transform.parent;
-		side = sr.flipX;
-		rabbit_copy = this;
+		muteOrActiveBackgroundMusic ();
+		if (canMove) {
+			initSoundSources ();
+			normalSize = transform.localScale;
+			curRedTime = redTime;
+			curDieTime = dieTime;
+			health = 1;
+			rend = GetComponent<Renderer> ();
+			myBody = this.GetComponent<Rigidbody2D> ();
+			LevelController.current.setStartPosition (transform.position);
+			animator = GetComponent<Animator> ();
+			sr = GetComponent<SpriteRenderer> ();
+			heroParent = transform.parent;
+			side = sr.flipX;
+			rabbit_copy = this;
+		}
 	}
 
 	void initSoundSources() {
@@ -140,41 +145,43 @@ public class HeroRabbit : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		myPos = this.transform.position;
-		if (health != 0) {
-			float value = Input.GetAxis ("Horizontal");
-			run (value);
-			flipPicture (value);
-			runAnimation (value);	
-			checkIfIsGrounded ();
-			jump ();
-			jumpAnimation ();
-			if (increase)
-				becomeHealthier ();
-			if (decrease)
-				becomeIllOrDie ();
-			if (red)
-				reddishRabbit ();
-			if (fly)
-				flyUp ();
+		if (canMove) {
+			myPos = this.transform.position;
+			if (health != 0) {
+				float value = Input.GetAxis ("Horizontal");
+				run (value);
+				flipPicture (value);
+				runAnimation (value);	
+				checkIfIsGrounded ();
+				jump ();
+				jumpAnimation ();
+				if (increase)
+					becomeHealthier ();
+				if (decrease)
+					becomeIllOrDie ();
+				if (red)
+					reddishRabbit ();
+				if (fly)
+					flyUp ();
 			
-		} else {
-			muteMusicOnRun ();
-		    dieAnimation ();
-			if ((curDieTime -= Time.deltaTime) < 0) {
-				LevelController.current.onRabbitDeath (this);
+			} else {
+				muteMusicOnRun ();
+				dieAnimation ();
+				if ((curDieTime -= Time.deltaTime) < 0) {
+					LevelController.current.onRabbitDeath (this);
+				}
+
 			}
+		}	
+	}
 
-		}
-
-		if (!LevelController.getMusic () && this.GetComponent<AudioSource> ().isPlaying) {
+	public void muteOrActiveBackgroundMusic() {
+	//	Debug.Log ("music form hero rabbit: "+LevelController.getMusic ());
+		if (!LevelController.getMusic ()) {
 			this.GetComponent<AudioSource> ().Stop();
-		} else if (LevelController.getMusic () && !this.GetComponent<AudioSource> ().isPlaying) {
+		} else {
 			this.GetComponent<AudioSource> ().Play();
 		}
-
-
-			
 	}
 
 	public void playMusicOnDeath() {
@@ -218,7 +225,7 @@ public class HeroRabbit : MonoBehaviour {
 	}
 
 	public void muteMusicOnRun() {
-		runSource.Stop ();
+		if (runSource!=null) runSource.Stop ();
 	}
 
 	void flipPicture(float value) 
@@ -248,8 +255,11 @@ public class HeroRabbit : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Linecast (from, to, layer_id);
 
 		if (hit) {
-			if (LevelController.getSound() && !isGrounded ) 
+			if (LevelController.getSound () && isGrounded && soundJump) {
 				groundSource.Play ();
+				isGrounded = false;
+				soundJump = false;
+			}
 			isGrounded = true;
 			SetNewParent (this.transform, hit.transform);
 		} else {
@@ -262,7 +272,6 @@ public class HeroRabbit : MonoBehaviour {
 		
 
 	void jump() {
-	  
 		if (Input.GetButtonDown ("Jump") && isGrounded) {
 				this.jumpActive = true;
 			}
@@ -279,8 +288,10 @@ public class HeroRabbit : MonoBehaviour {
 				} else {
 					this.jumpActive = false;
 					this.jumpTime = 0;
+				    soundJump = true;
 				}
 	      }
+			
 
 	}
 
@@ -431,16 +442,12 @@ public class HeroRabbit : MonoBehaviour {
 	void interactWithDoorLevelComplete(Collider2D collider) {
 		DoorLevelComplete door = collider.GetComponent<DoorLevelComplete> ();
 		if (door != null) {
-			door.saveInfo ();
-			StartCoroutine(openChangingScene());
+			LevelController.current.saveInfo (true);
 			LevelController.current.setInfo ();
+			StartCoroutine(LevelController.current.openChangingScene ());
 		}
 	}
 
 
-	IEnumerator openChangingScene() {
-		yield return new WaitForSeconds (1f);
-		SceneManager.LoadScene ("ChangeLevel");
-	}
 
 }

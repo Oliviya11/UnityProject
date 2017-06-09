@@ -2129,6 +2129,11 @@ Prefab:
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: ece9b14a232f14f48ab9a5e844cb5daf, type: 3}
+    - target: {fileID: 114652180116378812, guid: 00a843fcdaa5c7847b144b1f450899a3,
+        type: 2}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a843fcdaa5c7847b144b1f450899a3, type: 2}
   m_IsPrefabParent: 0
@@ -2839,7 +2844,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4021843367032350, guid: 77dd1f888e0207d4b8933bfa7bdfbbe5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -1096
       objectReference: {fileID: 0}
     - target: {fileID: 4021843367032350, guid: 77dd1f888e0207d4b8933bfa7bdfbbe5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3781,7 +3786,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4198652154904472, guid: 5d9579274d865a4458be5c56681f2e34, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2740
+      value: -1673
       objectReference: {fileID: 0}
     - target: {fileID: 4198652154904472, guid: 5d9579274d865a4458be5c56681f2e34, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4124,7 +4129,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4231541279339568, guid: d19c82e309da66b4787e16a4953931dc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3302
+      value: -2235
       objectReference: {fileID: 0}
     - target: {fileID: 4231541279339568, guid: d19c82e309da66b4787e16a4953931dc, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8513,7 +8518,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4976396981587760, guid: 12b37a9b116024147b7a49f339fef9f5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 887
+      value: -179
       objectReference: {fileID: 0}
     - target: {fileID: 4976396981587760, guid: 12b37a9b116024147b7a49f339fef9f5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8736,7 +8741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsBtn: {fileID: 1358690498}
-  settingsPrefab: {fileID: 1239333689616546, guid: 75bc8c4bede9cd3419cb7c0a84823b6a,
+  settingsPrefab: {fileID: 1992321872011384, guid: 75bc8c4bede9cd3419cb7c0a84823b6a,
     type: 2}
 --- !u!1 &1368291268
 GameObject:
@@ -9555,6 +9560,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 29a1be1fa90e3408eaa85fd769a32430,
         type: 3}
+    - target: {fileID: 68152912128059046, guid: 4cc5fee7c33e9cc45af01102751fda66,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cc5fee7c33e9cc45af01102751fda66, type: 2}
   m_IsPrefabParent: 0
@@ -9736,6 +9746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37f6a864106c43419e459b3935e505a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFruitsNumber: 0
 --- !u!4 &1470518442
 Transform:
   m_ObjectHideFlags: 0
@@ -10087,11 +10098,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4479902219838358, guid: 5bbd73cdea6e9dd4ba0b53f8e8ba0f0b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -21.85
+      value: -30.63
       objectReference: {fileID: 0}
     - target: {fileID: 4479902219838358, guid: 5bbd73cdea6e9dd4ba0b53f8e8ba0f0b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.31
+      value: -6.14
       objectReference: {fileID: 0}
     - target: {fileID: 4479902219838358, guid: 5bbd73cdea6e9dd4ba0b53f8e8ba0f0b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10368,9 +10379,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 57a5b2120c2d04fa9bcb5b2e99ee9361, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.204
+  m_Volume: 0.209
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -11298,7 +11309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ae39c9be7f34045b64071daa0e8811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFruitsNumber: 11
 --- !u!61 &1715018441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12513,7 +12523,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4722521626677818, guid: d78aa63f93fdbe74ea4129b7ba8e9055, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 530
+      value: -536
       objectReference: {fileID: 0}
     - target: {fileID: 4722521626677818, guid: d78aa63f93fdbe74ea4129b7ba8e9055, type: 2}
       propertyPath: m_LocalPosition.y

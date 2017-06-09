@@ -179,6 +179,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114652180116378812, guid: 00a843fcdaa5c7847b144b1f450899a3,
+        type: 2}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a843fcdaa5c7847b144b1f450899a3, type: 2}
   m_IsPrefabParent: 0
@@ -404,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37f6a864106c43419e459b3935e505a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFruitsNumber: 0
 --- !u!1001 &390418687
 Prefab:
   m_ObjectHideFlags: 0
@@ -701,7 +707,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4198652154904472, guid: 5d9579274d865a4458be5c56681f2e34, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1543
+      value: -822
       objectReference: {fileID: 0}
     - target: {fileID: 4198652154904472, guid: 5d9579274d865a4458be5c56681f2e34, type: 2}
       propertyPath: m_LocalPosition.y

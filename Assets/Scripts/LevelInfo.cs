@@ -8,7 +8,6 @@ public class LevelInfo {
 	public bool hasAllFruits = false;
 	public List<int> collectedFruits;
 	public int coinsNumber;
-	public bool music;
-	public bool sound;
+	public int fruitsNumber;
 	public bool passLevel;
 }

@@ -117,12 +117,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38ff19ef39be947b1b878eac4ea5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 0
+  runSound: {fileID: 8300000, guid: 0d024189a711c440997b2d9f341c8dd0, type: 3}
+  coinSound: {fileID: 8300000, guid: d07c1afb94cf04c50a369bdf0faaf7cf, type: 3}
+  crystalSound: {fileID: 8300000, guid: 1efea67b8444d4802941941e49c70cc0, type: 3}
+  fruitSound: {fileID: 8300000, guid: cd46aa2d6e78249dd8df3f3b948d168a, type: 3}
+  bombSound: {fileID: 8300000, guid: 0a239337795f5456b959aee0868bd6d6, type: 3}
+  mushroomSound: {fileID: 8300000, guid: 7e71b9428c0c54a65ad2831f0a140120, type: 3}
+  dieSound: {fileID: 0}
+  groundSound: {fileID: 8300000, guid: 4678dc960a2b949329a55d696cf4ec68, type: 3}
+  attackSound: {fileID: 8300000, guid: ece9b14a232f14f48ab9a5e844cb5daf, type: 3}
   speed: 4
   maxJumpTime: 1.5
   jumpSpeed: 4
-  myTime: 0.3
+  scaleTime: 0
   dieTime: 2
-  redTime: 4
 --- !u!212 &212547250106514212
 SpriteRenderer:
   m_ObjectHideFlags: 1

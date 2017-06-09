@@ -143,8 +143,8 @@ public class MovingPlatform : MonoBehaviour {
 			} else {
 				Vector3 destination = (target - my_pos);
 				destination.z = 0;
-				Vector3 finalVector = destination;
-				transform.Translate (finalVector * Time.deltaTime * speed);
+				Vector3 finalVector = destination.normalized*speed;
+				transform.Translate (finalVector * Time.deltaTime);
 				my_pos = transform.position;
 			}
 		} else {

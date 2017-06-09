@@ -179,12 +179,13 @@ public class HeroRabbit : MonoBehaviour {
 	//	Debug.Log ("music form hero rabbit: "+LevelController.getMusic ());
 		if (!LevelController.getMusic ()) {
 			this.GetComponent<AudioSource> ().Stop();
-		} else {
+		} else if (!this.GetComponent<AudioSource> ().isPlaying) {
 			this.GetComponent<AudioSource> ().Play();
 		}
 	}
 
 	public void playMusicOnDeath() {
+		if (LevelController.getSound())
 		dieSource.Play ();
 	}
 
@@ -402,10 +403,10 @@ public class HeroRabbit : MonoBehaviour {
 			StartCoroutine(openLevel (door.level));
 		}
 	}
-
+		
 	IEnumerator openLevel(int level) {
 		yield return new WaitForSeconds (1f);
-			SceneManager.LoadScene ("Level" + level.ToString ());
+		SceneManager.LoadScene ("Level" + level.ToString ());
 	}
 
 	IEnumerator waitForRabbitDeath(Org org){
@@ -442,12 +443,16 @@ public class HeroRabbit : MonoBehaviour {
 	void interactWithDoorLevelComplete(Collider2D collider) {
 		DoorLevelComplete door = collider.GetComponent<DoorLevelComplete> ();
 		if (door != null) {
-			LevelController.current.saveInfo (true);
-			LevelController.current.setInfo ();
-			StartCoroutine(LevelController.current.openChangingScene ());
+		    StartCoroutine(openDoor(door));
 		}
 	}
 
+	IEnumerator openDoor(DoorLevelComplete door) {
+		LevelController.current.saveInfo (true);
+	//	LevelController.current.setInfo ();
+		yield return new WaitForSeconds (1f);
+		door.showWinPanel ();
+	}
 
 
 }

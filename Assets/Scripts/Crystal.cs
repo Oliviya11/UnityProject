@@ -8,6 +8,7 @@ public class Crystal : Collectable {
 	protected override void OnRabbitHit (HeroRabbit rabbit)
 	{
 		LevelController.current.setCurCrystalColor (color);
+		LevelController.current.addCrystal (color);
 		if (LevelController.getSound())  rabbit.playMusicOnCrystal ();
 	}
 }

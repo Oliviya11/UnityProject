@@ -14,7 +14,8 @@ public class CoinsPanel : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (id == 0) {
-			current_number = LevelController.current.getStaticCoinsNumber ();
+			current_number = PlayerPrefs.GetInt ("coins", 0);;
+		
 		} else {
 			current_number = LevelController.current.getCoinsNumber ();
 		}

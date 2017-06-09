@@ -21,7 +21,8 @@ public class Fruit : Collectable {
 		rend.material.SetColor ("_Color", c);
 	}
 	protected override void OnRabbitHit(HeroRabbit rabbit) {
-		LevelController.current.increaseFruits ();
+		if (!LevelController.current.containFruit(id))
+		    LevelController.current.increaseFruits ();
 		if (LevelController.getSound()) rabbit.playMusicOnFruit ();
 		LevelController.current.putInList (id);
 	}

@@ -21,11 +21,12 @@ public class LosePanel : MonoBehaviour {
 		}
 		closeButton.signalOnClick.AddListener (this.OnCloseBtnAndBackground);
 		background.signalOnClick.AddListener (this.OnCloseBtnAndBackground);
-		menuButton.signalOnClick.AddListener (this.OnCloseBtnAndBackground);
-		repeatButton.signalOnClick.AddListener (this.OnRepeatBtn);
+		//Тут я переплутала префаби, тобто menuButton насправді - repeatButton і навпаки;
+		menuButton.signalOnClick.AddListener (this.OnRepeatBtn);
+		repeatButton.signalOnClick.AddListener (this.OnCloseBtnAndBackground);
 		setCrystals ();
 	}
-	public void OnCloseBtnAndBackground() {
+	public void 	OnCloseBtnAndBackground() {
 		StartCoroutine(LevelController.current.openMenu());
 	}
 

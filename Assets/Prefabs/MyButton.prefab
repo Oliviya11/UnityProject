@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162b7856a4ebdbf419294b1cfed36367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 0a7169e0dced249e7b04ff774fc0bd87, type: 3}
   signalOnClick:
     m_PersistentCalls:
       m_Calls: []

@@ -106,7 +106,7 @@ public class MovingPlatform : MonoBehaviour {
 		pointA = this.transform.position;
 		pointB = pointA + moveBy;
 		my_pos = transform.position;
-	    going_to_a = true;
+	    going_to_a = false;
 		changing_time = time_to_wait;
 		exchangeDirection ();
 	}
@@ -136,6 +136,7 @@ public class MovingPlatform : MonoBehaviour {
 
 
 	void move() {
+
 		if (changing_time <= 0) {
 			if (isArrived (my_pos, target)) {
 				changing_time = time_to_wait;

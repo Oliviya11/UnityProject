@@ -56,6 +56,7 @@ public class HeroRabbit : MonoBehaviour {
 	public static HeroRabbit rabbit_copy;
 
 	// Use this for initialization
+
 	void Start () {
 		muteOrActiveBackgroundMusic ();
 		if (canMove) {
@@ -70,9 +71,9 @@ public class HeroRabbit : MonoBehaviour {
 			animator = GetComponent<Animator> ();
 			sr = GetComponent<SpriteRenderer> ();
 			heroParent = transform.parent;
-			side = sr.flipX;
-			rabbit_copy = this;
+			side = sr.flipX;		
 		}
+		rabbit_copy = this;
 	}
 
 	void initSoundSources() {
@@ -176,7 +177,7 @@ public class HeroRabbit : MonoBehaviour {
 	}
 
 	public void muteOrActiveBackgroundMusic() {
-	//	Debug.Log ("music form hero rabbit: "+LevelController.getMusic ());
+
 		if (!LevelController.getMusic ()) {
 			this.GetComponent<AudioSource> ().Stop();
 		} else if (!this.GetComponent<AudioSource> ().isPlaying) {
@@ -400,7 +401,18 @@ public class HeroRabbit : MonoBehaviour {
 	void interactWithDoors(Collider2D collider) {
 		Door door = collider.GetComponent<Door> ();
 		if (door != null) {
-			StartCoroutine(openLevel (door.level));
+			
+			if (door.getId ()  > 1) {
+				int id = door.getId () - 1;
+				string str = PlayerPrefs.GetString ("info" + id.ToString (), null);
+				LevelInfo info = JsonUtility.FromJson<LevelInfo> (str);
+				if (info.passLevel){
+					StartCoroutine(openLevel (door.getId()));
+				}
+			}
+			else {
+				StartCoroutine(openLevel (door.getId()));
+			}
 		}
 	}
 		

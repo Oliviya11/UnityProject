@@ -7,16 +7,15 @@ public class SettingsPanel : MonoBehaviour {
 	public MyButton soundBtn;
 	public MyButton musicBtn;
 	public MyButton background;
-
 	public Sprite soundOnImg, soundOffImg, musicOnImg, musicOffImg;
+
 
 	// Use this for initialization
 	void Start () {
-		
 		startMusic ();
 		startSound ();
-		closeBtn.signalOnClick.AddListener (this.OnCloseBtnAndBackground);
-		background.signalOnClick.AddListener(this.OnCloseBtnAndBackground);
+		closeBtn.signalOnClick.AddListener (this.OnCloseBtn);
+		background.signalOnClick.AddListener(this.OnBackground);
 		soundBtn.signalOnClick.AddListener (this.OnSoundBtn);
 		musicBtn.signalOnClick.AddListener (this.OnMusicBtn);
 
@@ -26,9 +25,18 @@ public class SettingsPanel : MonoBehaviour {
 	void Update () {
 	}
 
-	void OnCloseBtnAndBackground() {
+	void OnBackground() {
+		close();
+	}
+	void OnCloseBtn() {
+		SettingsBtn.playSoundOnClosingSettingsPanel ();
+		close();
+	}
+	void close() {
+		
 		Time.timeScale = SettingsBtn.time;
 		Destroy (this.gameObject);
+		Destroy (background.gameObject);
 	}
 
 
@@ -39,7 +47,7 @@ public class SettingsPanel : MonoBehaviour {
 		} else {
 			OnSound ();
 		}
-		
+
 	}
 
 	void OnMusicBtn() {
@@ -50,8 +58,6 @@ public class SettingsPanel : MonoBehaviour {
 		else {
 			OnMusic ();
 		}
-
-
 	}
 
 	void startMusic() {

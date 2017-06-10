@@ -14,11 +14,13 @@ public class LevelController : MonoBehaviour {
 	static bool music=true, sound=true;
 	List<int> fruits = new List<int>();
 	List<int> crystals = new List<int>();
+	LevelInfo info;
 	void Awake() {
 		current = this;
+		setInfo ();
 	}
 	void Start() {
-		setInfo ();
+		//setInfo ();
 
 	}
 		
@@ -28,7 +30,7 @@ public class LevelController : MonoBehaviour {
 	public void setInfo() {
 		string str = PlayerPrefs.GetString ("info"+levelId.ToString(), null);
 		string str2 = PlayerPrefs.GetString ("MusicAndSound", null);
-		LevelInfo info = JsonUtility.FromJson<LevelInfo> (str);
+		info = JsonUtility.FromJson<LevelInfo> (str);
 		MusicAndSound musicAndSound = JsonUtility.FromJson<MusicAndSound> (str2);
 		if (info!=null) {
 			fruits = info.collectedFruits;
@@ -144,31 +146,49 @@ public class LevelController : MonoBehaviour {
 		Fruit.setCounterToZero ();
 		if (val) {
 			int coins = PlayerPrefs.GetInt ("coins", 0);
-			PlayerPrefs.SetInt ("coins", coinsNumber+coins);
-
-			if (LevelController.current.getCrystalsNumber () == 3) {
-				Debug.Log ("allCrystals");
+			PlayerPrefs.SetInt ("coins", coinsNumber + coins);
+			newinfo.passLevel = true;
+		}
+		else {
+			if (!info.passLevel)
+				newinfo.passLevel = false;
+			else
+				newinfo.passLevel = true;
+		}
+		if ((getCrystalsNumber () == 3 && val) || info.hasAllCrystals ) {
 				newinfo.hasAllCrystals = true;
 			}
-			if (LevelController.current.getFruitsNumber () == maxFruitsNumber) {
+	
+				
+		if ((getFruitsNumber () == maxFruitsNumber && val) || info.hasAllFruits) {
 				newinfo.hasAllFruits = true;
 			}
+		if (val || info.passLevel) { 
 			newinfo.collectedFruits = getFruits ();
 			newinfo.fruitsNumber = fruitsNumber;
-		} 
-		MusicAndSound newMusicAndSound = new MusicAndSound ();
-		newMusicAndSound.sound = sound;
-//		Debug.Log (music);
-		newMusicAndSound.music = music;
+		}
+
+		writeMusic ();
 		string str = JsonUtility.ToJson (newinfo);
 		PlayerPrefs.SetString ("info"+levelId.ToString(), str);
+
+
+	}
+	public void writeMusic() {
+		MusicAndSound newMusicAndSound = new MusicAndSound ();
+		newMusicAndSound.sound = sound;
+		newMusicAndSound.music = music;
 		string str2 = JsonUtility.ToJson (newMusicAndSound);
 		PlayerPrefs.SetString ("MusicAndSound", str2);
+	}
+
+	public void save() {
 		PlayerPrefs.Save ();
 	}
 		
 	public void saveInfo(bool val) {
 		modifyLevelInfo (val);
+		save ();
 	}
 
 	public IEnumerator openLevel() {

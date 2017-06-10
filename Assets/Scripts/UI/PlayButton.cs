@@ -13,6 +13,8 @@ public class PlayButton : MonoBehaviour {
 	}
 
 	public void onPlay() {
+		LevelController.current.writeMusic ();
+		LevelController.current.save ();
 		SceneManager.LoadScene ("ChangeLevel");
 	}
 

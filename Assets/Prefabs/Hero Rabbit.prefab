@@ -208,6 +208,7 @@ MonoBehaviour:
   dieSound: {fileID: 8300000, guid: 7553580dee44e4f96b2efa5f4e5e17c3, type: 3}
   groundSound: {fileID: 8300000, guid: 4678dc960a2b949329a55d696cf4ec68, type: 3}
   attackSound: {fileID: 8300000, guid: ece9b14a232f14f48ab9a5e844cb5daf, type: 3}
+  eatLife: {fileID: 8300000, guid: a1871116ead2c4d23a1570e79b94efed, type: 3}
   speed: 5
   maxJumpTime: 1
   jumpSpeed: 5.5

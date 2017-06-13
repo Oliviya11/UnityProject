@@ -47,7 +47,9 @@ public class SettingsPanel : MonoBehaviour {
 		} else {
 			OnSound ();
 		}
-
+		//saveing not only when win or lose...
+		LevelController.current.writeMusic ();
+		LevelController.current.save ();
 	}
 
 	void OnMusicBtn() {
@@ -58,6 +60,9 @@ public class SettingsPanel : MonoBehaviour {
 		else {
 			OnMusic ();
 		}
+		//saveing not only when win or lose...
+		LevelController.current.writeMusic ();
+		LevelController.current.save ();
 	}
 
 	void startMusic() {

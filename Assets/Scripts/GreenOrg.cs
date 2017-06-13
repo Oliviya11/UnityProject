@@ -12,7 +12,7 @@ public class GreenOrg : Org {
 	protected override void OnRabbitNoticed() {
 		float rabbitPos = HeroRabbit.rabbit_copy.transform.position.x;
 		if ((rabbitPos < pointA.x && rabbitPos > pointB.x && moveBy < 0) || (rabbitPos > pointA.x && rabbitPos < pointB.x && moveBy > 0)
-			&& Mathf.Abs (HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 2f) {
+			&& Mathf.Abs (HeroRabbit.rabbit_copy.transform.position.y - transform.position.y) < 0.5f) {
 			speed =2.3f;
 			fromWalkToRunAnimation ();
 			findRabbitLocation ();

@@ -14,6 +14,7 @@ public class HeroRabbit : MonoBehaviour {
 	public AudioClip dieSound = null;
 	public AudioClip groundSound = null;
 	public AudioClip attackSound = null;
+	public AudioClip eatLife = null;
 
 
 	AudioSource runSource = null;
@@ -25,6 +26,7 @@ public class HeroRabbit : MonoBehaviour {
 	AudioSource dieSource = null;
 	AudioSource groundSource = null;
 	AudioSource attackSource = null;
+	AudioSource eatLifeSource = null;
 	//AudioSource backgroundSource = null;
 
 	public float speed = 1;
@@ -86,16 +88,22 @@ public class HeroRabbit : MonoBehaviour {
 		dieSource = gameObject.AddComponent<AudioSource> ();
 		groundSource = gameObject.AddComponent<AudioSource> ();
 		attackSource = gameObject.AddComponent<AudioSource> ();
+		eatLifeSource =  gameObject.AddComponent<AudioSource> ();
 
-		   runSource.clip = runSound;
-		   coinSource.clip = coinSound;
-		   crystalSource.clip = crystalSound;
-		   fruitSource.clip = fruitSound;
-		   bombSource.clip = bombSound;
-		   mushroomSource.clip = mushroomSound;
-		   dieSource.clip = dieSound;
-		   groundSource.clip = groundSound;
-		   attackSource.clip = attackSound;
+		runSource.clip = runSound;
+		coinSource.clip = coinSound;
+		crystalSource.clip = crystalSound;
+		fruitSource.clip = fruitSound;
+		bombSource.clip = bombSound;
+		mushroomSource.clip = mushroomSound;
+		dieSource.clip = dieSound;
+		groundSource.clip = groundSound;
+		attackSource.clip = attackSound;
+		eatLifeSource.clip = eatLife;
+	}
+	public void playMusicOnEatingLife() {
+		if (LevelController.getSound()) 
+			eatLifeSource.Play ();
 	}
 
 	public void playMusicOnCoin() {
@@ -466,5 +474,7 @@ public class HeroRabbit : MonoBehaviour {
 		door.showWinPanel ();
 	}
 
-
+	public void setCanMove(bool val) {
+		canMove = val;
+	}
 }

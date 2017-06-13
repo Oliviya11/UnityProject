@@ -273,7 +273,7 @@ Prefab:
     - target: {fileID: 114893285266756864, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
       propertyPath: mWidth
-      value: 1182
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114893285266756864, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
@@ -283,22 +283,22 @@ Prefab:
     - target: {fileID: 114893285266756864, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
       propertyPath: aspectRatio
-      value: 1.2210743
+      value: 0.0020661156
       objectReference: {fileID: 0}
     - target: {fileID: 61223228815711128, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
       propertyPath: m_Offset.x
-      value: -2.6035004
+      value: -0.00440529
       objectReference: {fileID: 0}
     - target: {fileID: 61223228815711128, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
       propertyPath: m_Size.x
-      value: 951.1653
+      value: 1.9911895
       objectReference: {fileID: 0}
     - target: {fileID: 61223228815711128, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
       propertyPath: m_Size.y
-      value: 968
+      value: 2.0264444
       objectReference: {fileID: 0}
     - target: {fileID: 114893285266756864, guid: 12b37a9b116024147b7a49f339fef9f5,
         type: 2}
@@ -1175,7 +1175,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4976396981587760, guid: 12b37a9b116024147b7a49f339fef9f5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1453
+      value: 835
       objectReference: {fileID: 0}
     - target: {fileID: 4976396981587760, guid: 12b37a9b116024147b7a49f339fef9f5, type: 2}
       propertyPath: m_LocalPosition.y

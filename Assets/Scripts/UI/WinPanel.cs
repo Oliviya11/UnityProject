@@ -18,6 +18,7 @@ public class WinPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		HeroRabbit.rabbit_copy.setCanMove (false);
 		if (LevelController.getSound ()) {
 			winSource = gameObject.AddComponent<AudioSource> ();
 			winSource.clip = winSound;

@@ -114,7 +114,8 @@ public class MovingPlatform : MonoBehaviour {
 	bool isArrived(Vector3 pos, Vector3 target) {
 		pos.z = 0;
 		target.z = 0;
-		return Vector3.Distance(pos, target) < 0.02f;
+		//Debug.Log ("pos="+pos.sqrMagnitude+", target="+target.sqrMagnitude);
+		return (Vector3.Distance(pos, target) < 0.02f*speed);
 	}
 
 	void exchangeDirection() {
@@ -142,11 +143,14 @@ public class MovingPlatform : MonoBehaviour {
 				changing_time = time_to_wait;
 				exchangeDirection ();
 			} else {
+				
 				Vector3 destination = (target - my_pos);
 				destination.z = 0;
-				Vector3 finalVector = destination.normalized*speed;
-				transform.Translate (finalVector * Time.deltaTime);
+				Vector3 finalVector = destination.normalized;
+				transform.Translate (finalVector * Time.deltaTime*speed);
 				my_pos = transform.position;
+               
+			
 			}
 		} else {
 			waitForAWhile ();

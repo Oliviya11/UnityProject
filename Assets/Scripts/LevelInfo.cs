@@ -7,7 +7,6 @@ public class LevelInfo {
 	public bool hasAllCrystals = false;
 	public bool hasAllFruits = false;
 	public List<int> collectedFruits;
-	public int coinsNumber;
 	public int fruitsNumber;
 	public bool passLevel;
 }

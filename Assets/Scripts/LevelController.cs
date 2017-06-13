@@ -11,7 +11,7 @@ public class LevelController : MonoBehaviour {
 	int fruitsNumber=0, coinsNumber = 0, lifesNumber=3, crystalsCounter=0;
 	int curCrystalColor = -1;
 	Vector3 startingPosition;
-	static bool music=true, sound=true;
+	static bool music=true, sound=true, increaseLife = false;
 	List<int> fruits = new List<int>();
 	List<int> crystals = new List<int>();
 	LevelInfo info;
@@ -117,7 +117,12 @@ public class LevelController : MonoBehaviour {
 	void decreaseLifeNumber() {
 		lifesNumber--;
 	}
-
+	public void increaseLifeNumber() {
+		if (lifesNumber < 3) {
+			lifesNumber++;
+			increaseLife = true;
+		}
+	}
 	public void increasCoins() {
 		coinsNumber++;
 	}
@@ -138,11 +143,27 @@ public class LevelController : MonoBehaviour {
 		return crystalsCounter;
 	}
 
-
+	public bool getIfIncreaseLife() {
+		return increaseLife;
+	}
 		
-
+	public void setIncreaseLifeFaulse() {
+		increaseLife = false;
+	}
 	void modifyLevelInfo(bool val) {
+
+
 		LevelInfo newinfo = new LevelInfo ();
+		//Reset information to initial
+		/*
+//		newinfo.coinsNumber = 0;
+		newinfo.fruitsNumber = 0;
+		newinfo.passLevel = false;
+		newinfo.hasAllCrystals = false;
+		newinfo.hasAllFruits = false;
+		PlayerPrefs.SetInt ("coins",0);
+		*/
+
 		Fruit.setCounterToZero ();
 		if (val) {
 			int coins = PlayerPrefs.GetInt ("coins", 0);
@@ -167,8 +188,8 @@ public class LevelController : MonoBehaviour {
 			newinfo.collectedFruits = getFruits ();
 			newinfo.fruitsNumber = fruitsNumber;
 		}
-
-		writeMusic ();
+       
+	//    writeMusic ();
 		string str = JsonUtility.ToJson (newinfo);
 		PlayerPrefs.SetString ("info"+levelId.ToString(), str);
 
@@ -193,10 +214,13 @@ public class LevelController : MonoBehaviour {
 
 	public IEnumerator openLevel() {
 		yield return new WaitForSeconds (0.3f);
+		HeroRabbit.rabbit_copy.setCanMove (true);
 		SceneManager.LoadScene ("Level" + levelId.ToString ());
+
 	}
 	public IEnumerator openMenu() {
 		yield return new WaitForSeconds (0.3f);
+		HeroRabbit.rabbit_copy.setCanMove (true);
 		SceneManager.LoadScene ("Menu");
 	}
 }

@@ -14,6 +14,7 @@ public class LosePanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		HeroRabbit.rabbit_copy.setCanMove (false);
 		if (LevelController.getSound ()) {
 			loseSource = gameObject.AddComponent<AudioSource> ();
 			loseSource.clip = loseSound;

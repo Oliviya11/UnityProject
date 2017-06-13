@@ -335,7 +335,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1398681140943408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -473, y: -281, z: 0}
+  m_LocalPosition: {x: -619, y: -351, z: 0}
   m_LocalScale: {x: 0.9991899, y: 0.9991899, z: 0.9991899}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -348,7 +348,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436741223249878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4867726819692716}
@@ -374,7 +374,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1951194378162256}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 564, y: -16, z: 0}
+  m_LocalPosition: {x: 702, y: -16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4583049204364240}
@@ -388,7 +388,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1346734901394362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 470, y: -104, z: 0}
+  m_LocalPosition: {x: 470, y: -148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4890038435100384}
@@ -401,7 +401,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013726356540492}
   m_LocalRotation: {x: -0, y: -0, z: -0.00000008742278, w: -1}
-  m_LocalPosition: {x: 1212, y: 717, z: 0}
+  m_LocalPosition: {x: 1311, y: 921, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -414,7 +414,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1890982563039264}
   m_LocalRotation: {x: -0, y: -0, z: -0.00000008742278, w: -1}
-  m_LocalPosition: {x: 469, y: -790, z: 0}
+  m_LocalPosition: {x: 452, y: -966, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -440,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945295635394652}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21, y: 782, z: 0}
+  m_LocalPosition: {x: 14, y: 937, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -453,7 +453,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900132036775758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -822, y: 77, z: 0}
+  m_LocalPosition: {x: -976, y: 37, z: 0}
   m_LocalScale: {x: 0.9991899, y: 0.9991899, z: 0.9991899}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -466,7 +466,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853642186473940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -402, y: -82, z: 0}
+  m_LocalPosition: {x: -402, y: -126, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4890038435100384}
@@ -479,7 +479,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1548112853197474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 570, y: 1081, z: 0}
+  m_LocalPosition: {x: 589, y: 1144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4492960522960134}
@@ -503,7 +503,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561248958429784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: -90, z: 0}
+  m_LocalPosition: {x: 28, y: -134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4890038435100384}
@@ -516,7 +516,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1027836583232272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 559, y: -300, z: 0}
+  m_LocalPosition: {x: 697, y: -364, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4068476057902082}
@@ -545,7 +545,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1340594911938000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -178, y: 38, z: 0}
+  m_LocalPosition: {x: -324, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -558,7 +558,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217005509181992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 464, z: 0}
+  m_LocalPosition: {x: -28, y: 510, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4695081918806188}
@@ -574,7 +574,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1394576475754726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -473, y: 55, z: 0}
+  m_LocalPosition: {x: -633, y: 15, z: 0}
   m_LocalScale: {x: 0.99918985, y: 0.99918985, z: 0.99918985}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -587,7 +587,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363682385339588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -394, y: -801, z: 0}
+  m_LocalPosition: {x: -435, y: -955, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4723745873521092}
@@ -630,7 +630,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.000015258789, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -707,30 +707,30 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4723745873521092}
     relative: 0
-    absolute: 194
+    absolute: 187
   rightAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -235
+    absolute: -242
   bottomAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: 258
+    absolute: 216
   topAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -325
+    absolute: -367
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2766
-  mHeight: 412
+  mWidth: 3317
+  mHeight: 588
   mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.713592
+  aspectRatio: 5.6411567
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -813,11 +813,11 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: 66
+    absolute: -89
   rightAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -726
+    absolute: -881
   bottomAnchor:
     target: {fileID: 4723745873521092}
     relative: 0
@@ -829,14 +829,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 806
+  mWidth: 1081
   mHeight: 712
   mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.1320225
+  aspectRatio: 1.5182585
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -870,19 +870,19 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -1091
+    absolute: -1226
   rightAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -551
+    absolute: -686
   bottomAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -35
+    absolute: -12
   topAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: 295
+    absolute: 318
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -943,14 +943,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1023
+  mWidth: 1298
   mHeight: 290
   mDepth: 7
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.5275862
+  aspectRatio: 4.475862
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -992,22 +992,22 @@ MonoBehaviour:
   bottomAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: -479
+    absolute: -543
   topAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: -121
+    absolute: -185
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1013
+  mWidth: 1288
   mHeight: 358
   mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.829609
+  aspectRatio: 3.5977654
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1041,19 +1041,19 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -953
+    absolute: -1080
   rightAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: 9
+    absolute: -118
   bottomAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -363
+    absolute: -370
   topAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -93
+    absolute: -100
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -1127,19 +1127,19 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -675
+    absolute: -816
   rightAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -269
+    absolute: -410
   bottomAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -68
+    absolute: -45
   topAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: 284
+    absolute: 307
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -1184,19 +1184,19 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: -781
+    absolute: -822
   rightAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: -7
+    absolute: -48
   bottomAnchor:
     target: {fileID: 4723745873521092}
     relative: 0
-    absolute: -173
+    absolute: -151
   topAnchor:
     target: {fileID: 4723745873521092}
     relative: 0
-    absolute: 561
+    absolute: 583
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -1275,30 +1275,30 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: 130
+    absolute: 120
   rightAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -589
+    absolute: -599
   bottomAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: -427
+    absolute: -476
   topAnchor:
     target: {fileID: 4723745873521092}
     relative: 0.5
-    absolute: -173
+    absolute: -222
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 879
+  mWidth: 1154
   mHeight: 254
   mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.46063
+  aspectRatio: 4.5433073
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 0cb3697f36327471bb44edce51ece5a8, type: 3}
   mFont: {fileID: 0}
@@ -1360,13 +1360,13 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 366
-  mHeight: 223
+  mHeight: 311
   mDepth: 16
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.6412556
+  aspectRatio: 1.262069
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1417,13 +1417,13 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 390
-  mHeight: 221
+  mHeight: 309
   mDepth: 14
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.7647059
+  aspectRatio: 1.3541666
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   mTrueTypeFont: {fileID: 12800000, guid: 0cb3697f36327471bb44edce51ece5a8, type: 3}
   mFont: {fileID: 0}
   mText: Win level
-  mFontSize: 180
+  mFontSize: 250
   mFontStyle: 0
   mAlignment: 0
   mEncoding: 1
@@ -1624,14 +1624,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1032
+  mWidth: 1307
   mHeight: 264
   mDepth: 10
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.909091
+  aspectRatio: 4.776515
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 0cb3697f36327471bb44edce51ece5a8, type: 3}
   mFont: {fileID: 0}
@@ -1751,19 +1751,19 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -725
+    absolute: -901
   rightAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -47
+    absolute: -223
   bottomAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -487
+    absolute: -459
   topAnchor:
     target: {fileID: 4723745873521092}
     relative: 1
-    absolute: -69
+    absolute: -41
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -1808,30 +1808,30 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -1597
+    absolute: -1853
   rightAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: 1598
+    absolute: 1893
   bottomAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -942
+    absolute: -1055
   topAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: 1048
+    absolute: 1287
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 3195
-  mHeight: 1990
+  mWidth: 3746
+  mHeight: 2342
   mDepth: 6
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.6055276
+  aspectRatio: 1.5994877
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1911,13 +1911,13 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 400
-  mHeight: 233
+  mHeight: 321
   mDepth: 15
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.7167382
+  aspectRatio: 1.3333334
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1968,19 +1968,19 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -314
+    absolute: -441
   rightAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -40
+    absolute: -167
   bottomAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: -62
+    absolute: -45
   topAnchor:
     target: {fileID: 4888118189348478}
     relative: 0.5
-    absolute: 244
+    absolute: 261
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
